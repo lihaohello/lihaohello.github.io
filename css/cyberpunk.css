@@ -11075,6 +11075,9 @@ h6:before {
     margin-right: 0rem;
   }
 }
+footer.footer {
+  display: none;
+}
 @media screen and (max-width: 768px) {
   footer.footer .level-start {
     text-align: center;
@@ -11439,6 +11442,8 @@ figure.highlight.foldable div.level-left {
 }
 .widget .menu-list li ul {
   margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .widget .menu-list .level {
   margin-bottom: 0;
@@ -11455,6 +11460,10 @@ figure.highlight.foldable div.level-left {
 .widget .menu-list .tag {
   background: $light-grey;
   color: $white-invert;
+}
+.widget article.media {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .widget .tags .tag:first-child {
   background: #fcee09;
