@@ -11433,6 +11433,10 @@ figure.highlight.foldable div.level-left {
 .gist .file {
   all: initial;
 }
+.widget .menu-list {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 .widget .menu-list li ul {
   margin-right: 0;
 }
