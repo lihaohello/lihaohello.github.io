@@ -11065,6 +11065,9 @@ h6:before {
 .navbar-logo img {
   max-height: 1.75rem;
 }
+.section {
+  margin-top: 55px;
+}
 @media screen and (min-width: 1088px) {
   .navbar > .container .navbar-menu,
   .container > .navbar .navbar-menu {
