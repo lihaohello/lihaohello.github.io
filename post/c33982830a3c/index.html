@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>C++/C#混合编程概览 - 李浩的博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="李浩"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="李浩"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本系列文章的重点聚集在C++&amp;#x2F;CLI的以下三个方面：  C++&amp;#x2F;CLI的基本语法，以及开发者理解它的一种感性视角。 C++&amp;#x2F;CLI封装.NET库供原生C++项目使用的实现步骤。 C++&amp;#x2F;CLI封装原生C++库供.NET项目使用的实现步骤。"><meta property="og:type" content="blog"><meta property="og:title" content="C++/C#混合编程概览"><meta property="og:url" content="http://example.com/post/c33982830a3c/"><meta property="og:site_name" content="李浩的博客"><meta property="og:description" content="本系列文章的重点聚集在C++&amp;#x2F;CLI的以下三个方面：  C++&amp;#x2F;CLI的基本语法，以及开发者理解它的一种感性视角。 C++&amp;#x2F;CLI封装.NET库供原生C++项目使用的实现步骤。 C++&amp;#x2F;CLI封装原生C++库供.NET项目使用的实现步骤。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/post/c33982830a3c/CLI-01.png"><meta property="article:published_time" content="2024-04-02T14:00:00.000Z"><meta property="article:modified_time" content="2024-04-29T13:16:28.124Z"><meta property="article:author" content="李浩"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/post/c33982830a3c/CLI-01.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/c33982830a3c/"},"headline":"C++/C#混合编程概览","image":["http://example.com/post/c33982830a3c/CLI-01.png"],"datePublished":"2024-04-02T14:00:00.000Z","dateModified":"2024-04-29T13:16:28.124Z","author":{"@type":"Person","name":"李浩"},"publisher":{"@type":"Organization","name":"李浩的博客","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本系列文章的重点聚集在C++&#x2F;CLI的以下三个方面：  C++&#x2F;CLI的基本语法，以及开发者理解它的一种感性视角。 C++&#x2F;CLI封装.NET库供原生C++项目使用的实现步骤。 C++&#x2F;CLI封装原生C++库供.NET项目使用的实现步骤。"}</script><link rel="canonical" href="http://example.com/post/c33982830a3c/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a><a class="navbar-item" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91">【底层】</a><a class="navbar-item" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91">【算法】</a><a class="navbar-item" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91">【工程】</a><a class="navbar-item" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91">【架构】</a><a class="navbar-item" href="/link">链接</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-04-02T14:00:00.000Z" title="2024/4/2 22:00:00">2024-04-02</time>发表</span><span class="level-item"><time dateTime="2024-04-29T13:16:28.124Z" title="2024/4/29 21:16:28">2024-04-29</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/">【工程】</a><span> / </span><a class="link-muted" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/">C++/C#混合编程</a></span></div></div><h1 class="title is-3 is-size-4-mobile">C++/C#混合编程概览</h1><div class="content"><p>本系列文章的重点聚集在C++/CLI的以下三个方面：</p>
+<ol>
+<li>C++/CLI的基本语法，以及开发者理解它的一种感性视角。</li>
+<li>C++/CLI封装.NET库供原生C++项目使用的实现步骤。</li>
+<li>C++/CLI封装原生C++库供.NET项目使用的实现步骤。</li>
+</ol>
+<span id="more"></span>
+<h1 id="混合编程的意义"><a class="markdownIt-Anchor" href="#混合编程的意义"></a> 混合编程的意义</h1>
+<h2 id="c简介"><a class="markdownIt-Anchor" href="#c简介"></a> C++简介</h2>
+<p>C<ins>源代码编译后直接生成平台相关的二进制文件，运行效率极高；允许内存操作，适合底层系统开发；很多基础设施或大型软件都采用C</ins>进行开发，这也促进了该语言的生态繁荣。</p>
+<p>优点很多，但C++为人诟病的缺点也不少，例如：灵活高效的指针也带来了很多麻烦、语言越来越复杂等。</p>
+<h2 id="c简介-2"><a class="markdownIt-Anchor" href="#c简介-2"></a> C#简介</h2>
+<p>C#逐渐替代C++成为微软阵营的顶流语言，其市场份额逐渐增大，并荣获了“TIOBE 2023年度编程语言”的称号，发展势头可见一斑！</p>
+<p>与Java类似，C#源代码编译之后也会生成中间语言，继而在.NET虚拟机上执行，虚拟机提供内存管理、垃圾回收的功能。</p>
+<p>C#是纯粹的面向对象编程语言，学习曲线平缓；胜任多种类型的程序开发（如Web前后端、桌面程序等）；提供垃圾回收器机制，内存管理安全高效；有NuGet包管理器，海量开源库下载即用！</p>
+<p>且在工业软件二次开发领域，C#基本是一种标配，如AutoCAD、Revit等。</p>
+<p>C#的不足之处在于：编写的程序非常容易被反编译成源代码，代码混淆器也很难根治这个问题；在计算密集型程序中，该语言还有待提升竞争力。</p>
+<h2 id="混合编程的使用场景"><a class="markdownIt-Anchor" href="#混合编程的使用场景"></a> 混合编程的使用场景</h2>
+<p>C++和C#是两种设计思想差异很大的编程语言，各有优劣，某些场景下需要将两者优势互补。</p>
+<p>（1）跨语言复用程序库</p>
+<p>采用C<ins>进行项目开发时，如果需要用到既有C#类库，这时最好的方式是采用混合编程将既有C#类库封装起来，供C</ins>项目调用；反之同理。</p>
+<p>（2）软件保护</p>
+<p>C#开发的软件保密性差，商业软件的核心技术模块最好采用C++编写，采用混合编程的方式封装该模块供C#主项目调用。</p>
+<p>（3）软件整体性能提升</p>
+<p>C#性能还无法匹敌C++，在C#项目中存在计算密集型的操作时，可使用C++编写核心计算模块，通过混合编程的方式嵌入C#主项目中，进而提升软件的整体性能。</p>
+<h1 id="混合编程的方法"><a class="markdownIt-Anchor" href="#混合编程的方法"></a> 混合编程的方法</h1>
+<p>C<ins>和C#是微软生态的两个主力语言，Visual Studio对两者都有非常好的支持，微软也为C</ins>/C#混合编程提供了非常强大的工具。</p>
+<h2 id="ccli"><a class="markdownIt-Anchor" href="#ccli"></a> C++/CLI</h2>
+<p>C++/CLI是一种C<ins>变体语言，在支持原生C</ins>语法的基础上，引入了一系列新的语法特性来支持托管代码的编写。C++/CLI项目可引入原生C<ins>动态链接库或静态库，也支持引用C#类库，为实现跨语言调用程序库提供了语言基础。C</ins>/CLI是最完美的C++/C#混合编程方案。</p>
+<p><img src="/post/c33982830a3c/CLI-01.png" alt></p>
+<p>使用C++/CLI有三种模式：① 仅使用原生C<ins>代码；② 仅使用托管代码；③ 使用原生C</ins>和托管混合代码。当然，第③中模式才是重点，对于第①、②两种场景可直接构建原生的C++或C#项目。</p>
+<h2 id="pinvoke"><a class="markdownIt-Anchor" href="#pinvoke"></a> P/Invoke</h2>
+<p>P/Invoke是.NET提供的一种轻量机制，允许托管代码调用C/C<ins>编写的原生代码；不支持C</ins>调用C#代码。</p>
+<p>当C#项目需要调用少量原生代码时，这种方式可以作为首选方案。</p>
+<h2 id="com"><a class="markdownIt-Anchor" href="#com"></a> COM</h2>
+<p>COM（Component Object Model）是微软早期提出的一种软件架构，允许软件组件在不同的编程语言之间进行交互。其编程较为复杂，且部署依赖Windows注册表；在某些方面，.NET框架已成为更好的技术方案。本文不做进一步介绍。</p>
+<h1 id="本系列文章的重点"><a class="markdownIt-Anchor" href="#本系列文章的重点"></a> 本系列文章的重点</h1>
+<p>本系列文章的重点聚集在C++/CLI的以下三个方面：</p>
+<p>（1）C++/CLI的基本语法，以及开发者理解它的一种感性视角。</p>
+<p>（2）C++/CLI封装.NET库供原生C++项目调用的实现步骤。</p>
+<p>（3）C++/CLI封装原生C++库供.NET项目调用的实现步骤。</p>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/64377354d42a/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">C++/CLI封装原生C++库供.NET项目调用</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/582b7e689e06/"><span class="level-item">吃哪些苦？</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#混合编程的意义"><span class="level-left"><span class="level-item">1</span><span class="level-item"> 混合编程的意义</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#c简介"><span class="level-left"><span class="level-item">1.1</span><span class="level-item"> C++简介</span></span></a></li><li><a class="level is-mobile" href="#c简介-2"><span class="level-left"><span class="level-item">1.2</span><span class="level-item"> C#简介</span></span></a></li><li><a class="level is-mobile" href="#混合编程的使用场景"><span class="level-left"><span class="level-item">1.3</span><span class="level-item"> 混合编程的使用场景</span></span></a></li></ul></li><li><a class="level is-mobile" href="#混合编程的方法"><span class="level-left"><span class="level-item">2</span><span class="level-item"> 混合编程的方法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#ccli"><span class="level-left"><span class="level-item">2.1</span><span class="level-item"> C++/CLI</span></span></a></li><li><a class="level is-mobile" href="#pinvoke"><span class="level-left"><span class="level-item">2.2</span><span class="level-item"> P/Invoke</span></span></a></li><li><a class="level is-mobile" href="#com"><span class="level-left"><span class="level-item">2.3</span><span class="level-item"> COM</span></span></a></li></ul></li><li><a class="level is-mobile" href="#本系列文章的重点"><span class="level-left"><span class="level-item">3</span><span class="level-item"> 本系列文章的重点</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/"><span class="level-start"><span class="level-item">【工程】</span></span><span class="level-end"><span class="level-item tag">13</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">C++/C#混合编程</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C/"><span class="level-start"><span class="level-item">C/C++</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/CAD%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/"><span class="level-start"><span class="level-item">CAD二次开发</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/NET-C/"><span class="level-start"><span class="level-item">NET/C#</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/WPF/"><span class="level-start"><span class="level-item">WPF</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/wxWidgets/"><span class="level-start"><span class="level-item">wxWidgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/"><span class="level-start"><span class="level-item">【底层】</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/Windows%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">Windows系统编程</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">计算机网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/"><span class="level-start"><span class="level-item">【架构】</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/WPF-MVVM/"><span class="level-start"><span class="level-item">WPF/MVVM</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/"><span class="level-start"><span class="level-item">【算法】</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"><span class="level-start"><span class="level-item">计算几何</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a><p class="is-size-7"><span>&copy; 2024 李浩</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">世之奇伟瑰怪非常之观，常在于险远！</p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
