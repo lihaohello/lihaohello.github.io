@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="430" viewBox="0 0 500 430">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-size: 75px;
+        font-family: Pristina;
+      }
+
+      .cls-1 {
+        fill: #983bfc;
+      }
+
+      .cls-2 {
+        fill: #0443f3;
+      }
+    </style>
+  </defs>
+  <text id="LH" class="cls-1" transform="translate(-9.471 330.32) scale(5.442)">LH</text>
+  <text id="LH-2" data-name="LH" class="cls-2" transform="translate(5.529 326.321) scale(5.442)">LH</text>
+</svg>
