@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>UML图 - 李浩的博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="李浩"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="李浩"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="UML图是软件设计的重要工具，本文对UML2.5中的图做一个整体介绍，并给出几种常用图的官方示例。"><meta property="og:type" content="blog"><meta property="og:title" content="UML图"><meta property="og:url" content="http://example.com/post/a77bec188872/"><meta property="og:site_name" content="李浩的博客"><meta property="og:description" content="UML图是软件设计的重要工具，本文对UML2.5中的图做一个整体介绍，并给出几种常用图的官方示例。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/post/a77bec188872/%E7%B1%BB%E5%9B%BE%E5%A4%A7%E5%85%A8.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E7%B1%BB%E5%9B%BE.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E4%B8%9A%E5%8A%A1%E7%94%A8%E4%BE%8B%E5%9B%BE.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E7%B3%BB%E7%BB%9F%E7%94%A8%E4%BE%8B%E5%9B%BE.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E7%8A%B6%E6%80%81%E6%9C%BA%E5%9B%BE.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE2.png"><meta property="og:image" content="http://example.com/post/a77bec188872/%E5%BA%8F%E5%88%97%E5%9B%BE.png"><meta property="article:published_time" content="2024-05-04T08:00:28.000Z"><meta property="article:modified_time" content="2024-05-04T11:13:55.285Z"><meta property="article:author" content="李浩"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/post/a77bec188872/%E7%B1%BB%E5%9B%BE%E5%A4%A7%E5%85%A8.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/a77bec188872/"},"headline":"UML图","image":["http://example.com/post/a77bec188872/%E7%B1%BB%E5%9B%BE%E5%A4%A7%E5%85%A8.png","http://example.com/post/a77bec188872/%E7%B1%BB%E5%9B%BE.png","http://example.com/post/a77bec188872/%E4%B8%9A%E5%8A%A1%E7%94%A8%E4%BE%8B%E5%9B%BE.png","http://example.com/post/a77bec188872/%E7%B3%BB%E7%BB%9F%E7%94%A8%E4%BE%8B%E5%9B%BE.png","http://example.com/post/a77bec188872/%E7%8A%B6%E6%80%81%E6%9C%BA%E5%9B%BE.png","http://example.com/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE.png","http://example.com/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE2.png","http://example.com/post/a77bec188872/%E5%BA%8F%E5%88%97%E5%9B%BE.png"],"datePublished":"2024-05-04T08:00:28.000Z","dateModified":"2024-05-04T11:13:55.285Z","author":{"@type":"Person","name":"李浩"},"publisher":{"@type":"Organization","name":"李浩的博客","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"UML图是软件设计的重要工具，本文对UML2.5中的图做一个整体介绍，并给出几种常用图的官方示例。"}</script><link rel="canonical" href="http://example.com/post/a77bec188872/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a><a class="navbar-item" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91">【底层】</a><a class="navbar-item" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91">【算法】</a><a class="navbar-item" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91">【工程】</a><a class="navbar-item" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91">【架构】</a><a class="navbar-item" href="/link">链接</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-04T08:00:28.000Z" title="2024/5/4 16:00:28">2024-05-04</time>发表</span><span class="level-item"><time dateTime="2024-05-04T11:13:55.285Z" title="2024/5/4 19:13:55">2024-05-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/">【架构】</a><span> / </span><a class="link-muted" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">软件设计</a></span></div></div><h1 class="title is-3 is-size-4-mobile">UML图</h1><div class="content"><p>UML图是软件设计的重要工具，本文对UML2.5中的图做一个整体介绍，并给出几种常用图的官方示例。</p>
+<span id="more"></span>
+<h1 id="uml图的种类"><a class="markdownIt-Anchor" href="#uml图的种类"></a> UML图的种类</h1>
+<p>最新版UML标准为2.5，发布于2015年6月，官网地址：<a target="_blank" rel="noopener" href="https://www.uml-diagrams.org/">https://www.uml-diagrams.org/</a>。</p>
+<p><img src="/post/a77bec188872/%E7%B1%BB%E5%9B%BE%E5%A4%A7%E5%85%A8.png" alt="图片来自uml-diagrams.org官网"></p>
+<p>注意：上图中蓝色标识的图不属于UML官方分类！</p>
+<p>UML2.5图分为两大类（7+7），共计14种：</p>
+<ul>
+<li>
+<p>结构图（Structure Diagram）：描述系统的静态结构。</p>
+<ul>
+<li><strong>类图（Class Diagram）</strong>：表示类、接口以及其间的协作关系。</li>
+<li>对象图（Object Diagram）：表示某一时刻一组对象及其间的关系。</li>
+<li>包图（Package Diagram）：展现由模型分解而成的组织单元及其间的依赖关系。</li>
+<li>组合结构图（Composite Structure Diagram）：描述一个分类器的内部结构，分类器与其他部分之间的交互端口，展示一组相互协作的实例如何完成特定任务。</li>
+<li>组件图（Component Diagram）：展示一组构件之间的组织和依赖。</li>
+<li>部署图（Deployment Diagram）：描述了系统内部的软件如何分布在不同的节点上。</li>
+<li>轮廓图（Profile Diagram）：轮廓图提供了一种通用的扩展机制，用于为特定域和平台定制UML模型。</li>
+</ul>
+</li>
+<li>
+<p>行为图（Behavior Diagram）：描述系统的动态行为。</p>
+<ul>
+<li><strong>用例图（UseCase Diagram）</strong>：展示参与者、用例及其间关系。</li>
+<li><strong>活动图（Activity Diagram）</strong>：展示了在系统内从一个活动到另一个活动的流程。</li>
+<li><strong>状态机图（State Machine Diagram）</strong>：对一个单独对象的行为建模，指明对象在它的整个生命周期里，响应不同事件时，执行相关事件的顺序。</li>
+<li>交互图（Interaction Diagram）：对一个系统的动态方面进行建模。
+<ul>
+<li><strong>序列图（Sequence Diagram）</strong>：是场景的图形化表示，描述了以时间顺序组织的对象之间的交互活动。</li>
+<li>通信图（Communication Diagram）：描述收发消息的对象之间的结构组织。</li>
+<li>时序图（Timing Diagram）：适合实时和嵌入式系统建模的交互图，描述对象状态随着时间改变的情况。</li>
+<li>交互概览图（Interaction Overview Diagram）：是活动图的变体，描述业务过程中的控制流概览。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="类图"><a class="markdownIt-Anchor" href="#类图"></a> 类图</h1>
+<ul>
+<li>
+<p>常见类型</p>
+<ul>
+<li>领域模型图</li>
+<li>实现类图</li>
+</ul>
+</li>
+<li>
+<p>元素</p>
+<ul>
+<li>类</li>
+<li>接口</li>
+<li>抽象类</li>
+<li>…</li>
+</ul>
+</li>
+<li>
+<p>六大关系</p>
+<ul>
+<li>泛化（Generalization）</li>
+<li>实现（Realization）</li>
+<li>依赖（Dependency）</li>
+<li>关联（Association）</li>
+<li>聚合（Aggregation）</li>
+<li>组合（Composition）</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+</li>
+</ul>
+<p><img src="/post/a77bec188872/%E7%B1%BB%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+<h1 id="用例图"><a class="markdownIt-Anchor" href="#用例图"></a> 用例图</h1>
+<ul>
+<li>
+<p>两类</p>
+<ul>
+<li>业务用例图（Business Use Case Diagram）</li>
+<li>系统用例图（System Use Case Diagram）</li>
+</ul>
+</li>
+<li>
+<p>四个要素</p>
+<ul>
+<li>参与者</li>
+<li>用例</li>
+<li>关系
+<ul>
+<li>参与者 &amp; 参与者：泛化</li>
+<li>参与者 &amp; 用例：关联</li>
+<li>用例 &amp; 用例：包含、扩展、泛化</li>
+</ul>
+</li>
+<li>边界</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+</li>
+</ul>
+<p><img src="/post/a77bec188872/%E4%B8%9A%E5%8A%A1%E7%94%A8%E4%BE%8B%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+<p><img src="/post/a77bec188872/%E7%B3%BB%E7%BB%9F%E7%94%A8%E4%BE%8B%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+<h1 id="状态机图"><a class="markdownIt-Anchor" href="#状态机图"></a> 状态机图</h1>
+<ul>
+<li>
+<p>要素</p>
+<ul>
+<li>开始、结束</li>
+<li>状态（简单状态、组合状态）</li>
+<li>转换（事件和动作）</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+</li>
+</ul>
+<p><img src="/post/a77bec188872/%E7%8A%B6%E6%80%81%E6%9C%BA%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+<h1 id="活动图"><a class="markdownIt-Anchor" href="#活动图"></a> 活动图</h1>
+<ul>
+<li>
+<p>两种使用方式</p>
+<ul>
+<li>对工作流建模：常采用泳道将活动图中的活动状态分组</li>
+<li>对操作建模</li>
+</ul>
+</li>
+<li>
+<p>要素</p>
+<ul>
+<li>开始点</li>
+<li>结束点</li>
+<li>活动状态</li>
+<li>流程控制
+<ul>
+<li>分支：条件分支</li>
+<li>合并：重新合并，不需要监护条件</li>
+<li>分岔：一个控制流分成多个并发控制流</li>
+<li>汇合：多条并发控制流合并</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+<p><img src="/post/a77bec188872/%E6%B4%BB%E5%8A%A8%E5%9B%BE2.png" alt="图片来自uml-diagrams.org官网"></p>
+<h1 id="序列图"><a class="markdownIt-Anchor" href="#序列图"></a> 序列图</h1>
+<ul>
+<li>要素
+<ul>
+<li>角色</li>
+<li>对象和生命线</li>
+<li>活动条</li>
+<li>消息：消息、异步消息、返回消息</li>
+<li>交互框
+<ul>
+<li>alt：选择片段，if-else</li>
+<li>opt：可能发生或不发生</li>
+<li>par：并行</li>
+<li>loop：重复一定次数</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>示例</li>
+</ul>
+<p><img src="/post/a77bec188872/%E5%BA%8F%E5%88%97%E5%9B%BE.png" alt="图片来自uml-diagrams.org官网"></p>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/a86355a608ae/"><span class="level-item">行为型设计模式</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#uml图的种类"><span class="level-left"><span class="level-item">1</span><span class="level-item"> UML图的种类</span></span></a></li><li><a class="level is-mobile" href="#类图"><span class="level-left"><span class="level-item">2</span><span class="level-item"> 类图</span></span></a></li><li><a class="level is-mobile" href="#用例图"><span class="level-left"><span class="level-item">3</span><span class="level-item"> 用例图</span></span></a></li><li><a class="level is-mobile" href="#状态机图"><span class="level-left"><span class="level-item">4</span><span class="level-item"> 状态机图</span></span></a></li><li><a class="level is-mobile" href="#活动图"><span class="level-left"><span class="level-item">5</span><span class="level-item"> 活动图</span></span></a></li><li><a class="level is-mobile" href="#序列图"><span class="level-left"><span class="level-item">6</span><span class="level-item"> 序列图</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/"><span class="level-start"><span class="level-item">【工程】</span></span><span class="level-end"><span class="level-item tag">13</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">C++/C#混合编程</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C/"><span class="level-start"><span class="level-item">C/C++</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/CAD%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/"><span class="level-start"><span class="level-item">CAD二次开发</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/NET-C/"><span class="level-start"><span class="level-item">NET/C#</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/WPF/"><span class="level-start"><span class="level-item">WPF</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/wxWidgets/"><span class="level-start"><span class="level-item">wxWidgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/"><span class="level-start"><span class="level-item">【底层】</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/Windows%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">Windows系统编程</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">计算机网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/"><span class="level-start"><span class="level-item">【架构】</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/WPF-MVVM/"><span class="level-start"><span class="level-item">WPF/MVVM</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="level-start"><span class="level-item">设计模式</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"><span class="level-start"><span class="level-item">软件设计</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/"><span class="level-start"><span class="level-item">【算法】</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"><span class="level-start"><span class="level-item">计算几何</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a><p class="is-size-7"><span>&copy; 2024 李浩</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">世之奇伟瑰怪非常之观，常在于险远！</p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
