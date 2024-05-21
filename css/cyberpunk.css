@@ -11067,7 +11067,7 @@ h6:before {
   }
 }
 footer.footer {
-  display: none;
+  padding: 10px;
 }
 @media screen and (max-width: 768px) {
   footer.footer .level-start {
@@ -11085,6 +11085,7 @@ footer.footer .level-end .field {
   }
 }
 .footer-logo img {
+  display: none;
   max-height: 1.75rem;
 }
 .pagination {
