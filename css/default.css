@@ -10778,6 +10778,12 @@ body > .section {
   border: none;
   margin-top: 0;
 }
+article {
+  user-select: none;
+}
+article div.highlight-body {
+  user-select: text;
+}
 article.media {
   color: #7a7a7a;
 }
@@ -10815,48 +10821,51 @@ article.article .article-meta {
   margin-bottom: 0.5rem;
 }
 article.article h1.title {
-  font-size: 1.7em;
+  font-size: 1.5em;
   color: #7b68ee;
   text-align: center;
   font-weight: bold;
 }
 article.article p.title a.link-muted {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   color: #7b68ee;
+}
+article.article p.title {
+  margin-bottom: 1.1rem;
 }
 article.article .content {
   word-wrap: break-word;
   font-size: 1.1rem;
 }
 article.article .content h1:not(.title) {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #7b68ee;
   text-align: center;
 }
 article.article .content h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #7b68ee;
 }
 article.article .content h3 {
-  font-size: 1.15em;
+  font-size: 1.1em;
   font-weight: bold;
   color: #7b68ee;
 }
 article.article .content h4 {
-  font-size: 0.95em;
+  font-size: 0.9em;
   font-weight: bold;
   color: #7b68ee;
 }
 article.article .content h5 {
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: bold;
   color: #7b68ee;
 }
 article.article .content pre {
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 article.article .content img {
   display: block;
@@ -10992,7 +11001,8 @@ h2:before {
   counter-increment: h2counter;
   content: counter(h1counter) "." counter(h2counter) "\0000a0\0000a0";
 }
-h3:not(.menu-label):before {
+h3:not(.menu-label,
+.title):before {
   counter-increment: h3counter;
   content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "\0000a0\0000a0";
 }
@@ -11007,6 +11017,15 @@ h5:before {
 h6:before {
   counter-increment: h6counter;
   content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) "." counter(h6counter) "\0000a0\0000a0";
+}
+div.content.v {
+  margin-bottom: 0px;
+}
+div.content.v div.empty {
+  display: none;
+}
+div.content.v div.vpower {
+  display: none;
 }
 .navbar-main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
