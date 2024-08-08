@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>给既有exe程序添加一机一码验证 - 李浩的博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="李浩"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="李浩"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本科期间开发过一款混凝土基本构件设计程序，该程序是一个独立的exe可执行文件，采用VC++静态链接MFC库编制而成。近期，需要为该程序添加用户注册验证的功能，从而避免任何用户获取该程序就能无限制使用的问题。 刚开始，打算在网络上找可直接为单个exe文件添加“一机一码”注册功能的平台软件，但该类软件基本都是付费软件，且生成的加壳程序很容易被杀毒软件误差。好在“一机一码”机制并不复杂，最终决定使用C#"><meta property="og:type" content="blog"><meta property="og:title" content="给既有exe程序添加一机一码验证"><meta property="og:url" content="http://example.com/post/0360a719e2ca/"><meta property="og:site_name" content="李浩的博客"><meta property="og:description" content="本科期间开发过一款混凝土基本构件设计程序，该程序是一个独立的exe可执行文件，采用VC++静态链接MFC库编制而成。近期，需要为该程序添加用户注册验证的功能，从而避免任何用户获取该程序就能无限制使用的问题。 刚开始，打算在网络上找可直接为单个exe文件添加“一机一码”注册功能的平台软件，但该类软件基本都是付费软件，且生成的加壳程序很容易被杀毒软件误差。好在“一机一码”机制并不复杂，最终决定使用C#"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2024-07-13T07:59:39.000Z"><meta property="article:modified_time" content="2024-07-14T07:29:29.529Z"><meta property="article:author" content="李浩"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/post/0360a719e2ca/"},"headline":"给既有exe程序添加一机一码验证","image":["http://example.com/img/og_image.png"],"datePublished":"2024-07-13T07:59:39.000Z","dateModified":"2024-07-14T07:29:29.529Z","author":{"@type":"Person","name":"李浩"},"publisher":{"@type":"Organization","name":"李浩的博客","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本科期间开发过一款混凝土基本构件设计程序，该程序是一个独立的exe可执行文件，采用VC++静态链接MFC库编制而成。近期，需要为该程序添加用户注册验证的功能，从而避免任何用户获取该程序就能无限制使用的问题。 刚开始，打算在网络上找可直接为单个exe文件添加“一机一码”注册功能的平台软件，但该类软件基本都是付费软件，且生成的加壳程序很容易被杀毒软件误差。好在“一机一码”机制并不复杂，最终决定使用C#"}</script><link rel="canonical" href="http://example.com/post/0360a719e2ca/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a><a class="navbar-item" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91">【底层】</a><a class="navbar-item" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91">【算法】</a><a class="navbar-item" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91">【工程】</a><a class="navbar-item" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91">【架构】</a><a class="navbar-item" href="/link">链接</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-07-13T07:59:39.000Z" title="2024/7/13 15:59:39">2024-07-13</time>发表</span><span class="level-item"><time dateTime="2024-07-14T07:29:29.529Z" title="2024/7/14 15:29:29">2024-07-14</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/">【工程】</a><span> / </span><a class="link-muted" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/NET-C/">NET/C#</a></span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">给既有exe程序添加一机一码验证</h1><div class="content"><p>本科期间开发过一款混凝土基本构件设计程序，该程序是一个独立的exe可执行文件，采用VC++静态链接MFC库编制而成。近期，需要为该程序添加用户注册验证的功能，从而避免任何用户获取该程序就能无限制使用的问题。</p>
+<p>刚开始，打算在网络上找可直接为单个exe文件添加“一机一码”注册功能的平台软件，但该类软件基本都是付费软件，且生成的加壳程序很容易被杀毒软件误差。好在“一机一码”机制并不复杂，最终决定使用C#编程的方式手动实现该功能。</p>
+<span id="more"></span>
+<h1 id="整体思路"><a class="markdownIt-Anchor" href="#整体思路"></a> 整体思路</h1>
+<ol>
+<li>新建C#控制台程序，将exe嵌入C#的资源文件</li>
+<li>控制台程序启动后，先进行“一机一码”校验：
+<ul>
+<li>如果已注册，直接进入第3步</li>
+<li>如果未注册，则弹出注册窗口，提示用户输入注册码：注册成功进入第3步；失败继续提示输入注册码或退出</li>
+</ul>
+</li>
+<li>通过代码从资源文件中释放exe，并启动新进程，控制台进程等待新进程执行完毕再退出</li>
+</ol>
+<h1 id="主要问题"><a class="markdownIt-Anchor" href="#主要问题"></a> 主要问题</h1>
+<h2 id="一机一码的验证策略"><a class="markdownIt-Anchor" href="#一机一码的验证策略"></a> “一机一码”的验证策略</h2>
+<ul>
+<li>先获取硬件（CPU、硬盘等）的序列号，通过序列号组合成机器码</li>
+<li>通过某种加密算法从机器码计算得到注册码，并把注册码写入特定的文件或注册表</li>
+<li>每次打开加壳程序时，都先获取机器码计算注册码，将计算得到的注册码与保存在本地的注册码进行比较，如果一致就说明注册成功，反之失败</li>
+</ul>
+<p>以下是获取CPU和硬盘序列号的函数：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">GetCPUId</span>()</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ManagementObjectCollection collection1 = <span class="keyword">new</span> ManagementClass(<span class="string">&quot;Win32_Processor&quot;</span>).GetInstances();</span><br><span class="line">        <span class="built_in">string</span> strCpuID = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (ManagementObject obj1 <span class="keyword">in</span> collection1) &#123;</span><br><span class="line">            strCpuID = obj1.Properties[<span class="string">&quot;ProcessorId&quot;</span>].Value.ToString();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strCpuID;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;strCpuID&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">GetDiskId</span>()</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ManagementObjectSearcher searcher = <span class="keyword">new</span> ManagementObjectSearcher(<span class="string">&quot;SELECT * FROM Win32_PhysicalMedia&quot;</span>);</span><br><span class="line">        String strHardDiskID = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">foreach</span> (ManagementObject mo <span class="keyword">in</span> searcher.Get()) &#123;</span><br><span class="line">            strHardDiskID = mo[<span class="string">&quot;SerialNumber&quot;</span>].ToString().Trim();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> strHardDiskID;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;strHardDiskID&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="释放资源获得原始文件"><a class="markdownIt-Anchor" href="#释放资源获得原始文件"></a> 释放资源获得原始文件</h2>
+<ul>
+<li>这里需要指定释放文件的保存路径，可以选择当前用户的临时文件夹</li>
+<li>可以设置释放文件的状态为隐藏，为用户拷贝该文件制造额外障碍</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">byte</span>[] fileBytes = Resource1.program;</span><br><span class="line"><span class="built_in">string</span> fileName = System.IO.Path.GetTempPath();</span><br><span class="line"><span class="keyword">if</span> (fileName.EndsWith(<span class="string">&quot;\\&quot;</span>))</span><br><span class="line">    fileName = fileName + <span class="string">&quot;program.exe&quot;</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    fileName = fileName + <span class="string">&quot;\\program.exe&quot;</span>;</span><br><span class="line"><span class="keyword">using</span> (BinaryWriter bw = <span class="keyword">new</span> BinaryWriter(<span class="keyword">new</span> System.IO.FileStream(fileName, System.IO.FileMode.Create))) &#123;</span><br><span class="line">    bw.Write(fileBytes);</span><br><span class="line">    bw.Flush();</span><br><span class="line">    bw.Dispose();</span><br><span class="line">&#125;</span><br><span class="line">File.SetAttributes(fileName, FileAttributes.Hidden);</span><br></pre></td></tr></table></figure>
+<h2 id="执行释放程序并等待其结束"><a class="markdownIt-Anchor" href="#执行释放程序并等待其结束"></a> 执行释放程序并等待其结束</h2>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.Diagnostics.Process myPro = System.Diagnostics.Process.Start(fileName);</span><br><span class="line">myPro.WaitForExit();</span><br></pre></td></tr></table></figure>
+<h1 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h1>
+<ol>
+<li>释放exe文件后，该文件必定存在于本机某个路径，高级用户可以找到该路径并拷贝exe文件，从而轻松破解。这是本方法的硬伤，只能通过选择隐蔽路径、设置文件隐藏等方法加大定位该文件的难度。</li>
+<li>由于采用C#语言进行加壳，很容易反编译得到加壳逻辑，这样从机器码到注册码的算法逻辑就非常容易被破解者发现，从而自己计算实现注册。解决该方法的办法是：使用C+ +编写机器码到注册码的算法逻辑，然后封装给C#程序调用；或者使用C+ +来进行加壳；或者更彻底一些，将注册码计算过程部署到服务器，通过网络来进行验证。</li>
+<li>软件开发者端需要额外的注册码计算程序，从而实现软件分发控制。</li>
+</ol>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/347c4ce2bceb/"><span class="level-item">外部参照</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="content" id="valine-thread"></div><script src="//cdn.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.16/dist/Valine.min.js"></script><script>new Valine({
+            el: '#valine-thread',
+            appId: "xIgb0xqNecOFPIzEcSTtTex2-gzGzoHsz",
+            appKey: "DTvlJfXshQVAEzKL4tilxk0e",
+            placeholder: "技术交流，思想碰撞，共同进步...",
+            avatar: "hide",
+            avatarForce: false,
+            meta: ["nick","mail"],
+            pageSize: 10,
+            lang: "zh-CN",
+            visitor: false,
+            highlight: false,
+            recordIP: false,
+            
+            
+            
+            enableQQ: false,
+            requiredFields: [],
+        });</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#整体思路"><span class="level-left"><span class="level-item">1</span><span class="level-item"> 整体思路</span></span></a></li><li><a class="level is-mobile" href="#主要问题"><span class="level-left"><span class="level-item">2</span><span class="level-item"> 主要问题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#一机一码的验证策略"><span class="level-left"><span class="level-item">2.1</span><span class="level-item"> “一机一码”的验证策略</span></span></a></li><li><a class="level is-mobile" href="#释放资源获得原始文件"><span class="level-left"><span class="level-item">2.2</span><span class="level-item"> 释放资源获得原始文件</span></span></a></li><li><a class="level is-mobile" href="#执行释放程序并等待其结束"><span class="level-left"><span class="level-item">2.3</span><span class="level-item"> 执行释放程序并等待其结束</span></span></a></li></ul></li><li><a class="level is-mobile" href="#注意事项"><span class="level-left"><span class="level-item">3</span><span class="level-item"> 注意事项</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/"><span class="level-start"><span class="level-item">【工程】</span></span><span class="level-end"><span class="level-item tag">33</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">C++/C#混合编程</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/C-C/"><span class="level-start"><span class="level-item">C/C++</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/CAD%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/"><span class="level-start"><span class="level-item">CAD二次开发</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/NET-C/"><span class="level-start"><span class="level-item">NET/C#</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/WPF/"><span class="level-start"><span class="level-item">WPF</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/wxWidgets/"><span class="level-start"><span class="level-item">wxWidgets</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">实用工具</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/"><span class="level-start"><span class="level-item">【底层】</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/Windows%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">Windows系统编程</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E5%BA%95%E5%B1%82%E3%80%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">计算机网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/"><span class="level-start"><span class="level-item">【架构】</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="level-start"><span class="level-item">设计模式</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E6%9E%B6%E6%9E%84%E3%80%91/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"><span class="level-start"><span class="level-item">软件设计</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/"><span class="level-start"><span class="level-item">【算法】</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">数据结构与算法</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E3%80%90%E7%AE%97%E6%B3%95%E3%80%91/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"><span class="level-start"><span class="level-item">计算几何</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="李浩的博客" height="28"></a><p class="is-size-7"><span>李浩的博客 &copy; 2024 李浩</span> | Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> | Based on <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> theme</p><p class="is-size-7"><p class="is-size-7"><a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2024055925号</a>&nbsp;|&nbsp;<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"><img src="/images/又拍云_logo2.png" width="45px" />提供加速服务</a></p></p><p class="is-size-7"><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
